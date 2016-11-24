@@ -19,7 +19,11 @@ echo REVDEPS="$REVDEPS" >> env.list
 echo EXTRA_DEPS="$EXTRA_DEPS" >> env.list
 echo PRE_INSTALL_HOOK="$PRE_INSTALL_HOOK" >> env.list
 echo POST_INSTALL_HOOK="$POST_INSTALL_HOOK" >> env.list
+<<<<<<< HEAD
+echo $EXTRA_ENV >> env.list
+=======
 echo $EXTRA_ENV_VARS >> env.list
+>>>>>>> 6f53a80... docker: pass EXTRA_ENV to Docker script for additional variables
 
 # build a local image to trigger any ONBUILDs
 echo FROM ocaml/opam:${DISTRO}_ocaml-${OCAML_VERSION} > Dockerfile

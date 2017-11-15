@@ -63,8 +63,14 @@ List.iter pin pins;
 ?| "eval $(opam config env)";
 
 ?| "opam update -u";
+<<<<<<< HEAD
 ?| "opam install mirage";
 ?| "mirage configure --$MIRAGE_BACKEND";
+=======
+?| "opam install 'mirage>=3.0.0'";
+?| "mirage configure -t $MIRAGE_BACKEND";
+?| "make depend";
+>>>>>>> 5967238... Add a constraint to the mirage version
 ?| "make";
 ?| "echo TRAVIS_BRANCH=$TRAVIS_BRANCH"
 ;;

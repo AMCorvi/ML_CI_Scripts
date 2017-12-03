@@ -28,6 +28,9 @@ let extra_remotes = list (getenv_default "EXTRA_REMOTES" "")
 (* Any extra pins to use *)
 let pins = list (getenv_default "PINS" "")
 
+(* Directory in which to build the unikernel *)
+let dir = getenv_default "SRC_DIR" "."
+
 (* Mirage deployment environment *)
 let (|>) a b = b a
 let is_deploy = getenv_default "DEPLOY" "false" |> fuzzy_bool_of_string
@@ -60,6 +63,7 @@ export "OPAMYES" "1";
 List.iter add_remote extra_remotes;
 
 List.iter pin pins;
+cd dir;
 ?| "eval $(opam config env)";
 
 ?| "opam update -u";
@@ -68,7 +72,6 @@ List.iter pin pins;
 ?| "mirage configure --$MIRAGE_BACKEND";
 =======
 ?| "opam install 'mirage>=3.0.0'";
-?| {| [ -n "$SRC_DIR" ] && cd "$SRC_DIR" |};
 ?| "mirage configure -t $MIRAGE_BACKEND $FLAGS";
 ?| "make depend";
 >>>>>>> 5967238... Add a constraint to the mirage version

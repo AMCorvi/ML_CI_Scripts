@@ -69,7 +69,7 @@ List.iter pin pins;
 =======
 ?| "opam install 'mirage>=3.0.0'";
 ?| {| [ -n "$SRC_DIR" ] && cd "$SRC_DIR" |};
-?| "mirage configure -t $MIRAGE_BACKEND";
+?| "mirage configure -t $MIRAGE_BACKEND $FLAGS";
 ?| "make depend";
 >>>>>>> 5967238... Add a constraint to the mirage version
 ?| "make";

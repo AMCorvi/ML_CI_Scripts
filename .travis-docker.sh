@@ -4,9 +4,11 @@
 echo -en "travis_fold:start:prepare.ci\r"
 default_user=ocaml
 default_branch=master
+default_hub_user=ocaml
 
 fork_user=${FORK_USER:-$default_user}
 fork_branch=${FORK_BRANCH:-$default_branch}
+hub_user=${HUB_USER:-$default_hub_user}
 
 # create env file
 echo PACKAGE="$PACKAGE" > env.list
@@ -26,7 +28,7 @@ echo $EXTRA_ENV_VARS >> env.list
 >>>>>>> 6f53a80... docker: pass EXTRA_ENV to Docker script for additional variables
 
 # build a local image to trigger any ONBUILDs
-echo FROM ocaml/opam:${DISTRO}_ocaml-${OCAML_VERSION} > Dockerfile
+echo FROM ${hub_user}/opam:${DISTRO}_ocaml-${OCAML_VERSION} > Dockerfile
 echo WORKDIR /home/opam/opam-repository >> Dockerfile
 
 if [ -n "$BASE_REMOTE" ]; then
